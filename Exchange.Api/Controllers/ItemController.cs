@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Exchange.Api.Service;
+using Exchange.Api.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Exchange.Api.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("api/item")]
 	[ApiController]
 	public class ItemController : ControllerBase
 	{
@@ -28,7 +29,7 @@ namespace Exchange.Api.Controllers
 		[HttpGet("{id}")]
 		public ActionResult<string> Get(int id)
 		{
-			
+			return "value";
 		}
 
 		// POST api/values
