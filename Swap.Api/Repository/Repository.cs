@@ -1,4 +1,4 @@
-﻿using Exchange.Api.Data;
+﻿using Swap.Api.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Exchange.Api.Repository
+namespace Swap.Api.Repository
 {
 	public class Repository<T> : IRepository<T> where T : class
 	{

@@ -1,14 +1,23 @@
-﻿using Exchange.Api.Data;
-using Exchange.Api.Models;
-using Exchange.Api.Service.Interfaces;
+﻿using Swap.Api.Data;
+using Swap.Api.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Exchange.Api.Service
+namespace Swap.Api.Service
 {
+	public interface IItemService
+	{
+		IEnumerable<Item> Get();
+		IEnumerable<Item> Get(Expression<Func<Item, bool>> predicate, params Expression<Func<Item, object>>[] props);
+		void Add(Item entity);
+		void Delete(Item entity);
+		void Update(Item entity);
+	}
+
 	public class ItemService : IItemService
 	{
 		private readonly IUnitOfWork _uow;
@@ -21,33 +30,32 @@ namespace Exchange.Api.Service
 
 		public void Add(Item entity)
 		{
-			
+			_repo.Add(entity);
+			_uow.Commit();
 		}
 
 		public void Delete(Item entity)
 		{
-			throw new NotImplementedException();
+			_repo.Delete(entity);
+			_uow.Commit();
 		}
 
 		public IEnumerable<Item> Get()
 		{
-			throw new NotImplementedException();
+			return _repo.Get();
 		}
 
 		public IEnumerable<Item> Get(Expression<Func<Item, bool>> predicate, params Expression<Func<Item, object>>[] props)
 		{
-			throw new NotImplementedException();
+			return _repo.Get(predicate, props);
 		}
 
-		public void Insert(Item item)
-		{
-			
-
-		}
 
 		public void Update(Item entity)
 		{
-			throw new NotImplementedException();
+			_repo.Update(entity);
+			_uow.Commit();
+
 		}
 	}
 }

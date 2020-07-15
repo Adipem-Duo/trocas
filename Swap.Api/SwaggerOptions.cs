@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Exchange.Api
+namespace Swap.Api
 {
 	public class SwaggerOptions
 	{

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace Exchange.Api.Data
+namespace Swap.Api.Data
 {
 	public interface IRepository<T> where T : class
 	{

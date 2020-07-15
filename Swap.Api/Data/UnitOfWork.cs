@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Exchange.Api.Models;
+using Swap.Api.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace Exchange.Api.Data
+namespace Swap.Api.Data
 {
 	public class UnitOfWork : IUnitOfWork
 	{
-		public DbContext Context { get; }
+		public DataContext Context { get; }
 
-		public UnitOfWork(DbContext context)
+		public UnitOfWork(DataContext context)
 		{
 			Context = context;
 		}
