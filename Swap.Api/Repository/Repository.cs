@@ -1,13 +1,20 @@
-﻿using Swap.Api.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Swap.Api.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace Swap.Api.Repository
 {
+	public interface IRepository<T> where T : class
+	{
+		IEnumerable<T> Get();
+		IEnumerable<T> Get(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] props);
+		void Add(T entity);
+		void Delete(T entity);
+		void Update(T entity);
+	}
 	public class Repository<T> : IRepository<T> where T : class
 	{
 		private readonly IUnitOfWork _unitOfWork;

@@ -1,14 +1,10 @@
-﻿using Swap.Api.Models;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Swap.Api.Models;
 
 namespace Swap.Api.Data
 {
-	public class DataContext : IdentityDbContext 
+	public class DataContext : IdentityDbContext<ApplicationUser> 
 	{
 		public virtual DbSet<Item> Itens { get; set; }
 		public virtual DbSet<Exchange> Exchanges { get; set; }

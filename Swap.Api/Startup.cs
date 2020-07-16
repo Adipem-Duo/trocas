@@ -44,9 +44,14 @@ namespace Swap.Api
 			{
 				options.UseNpgsql(cs.ConnectionString);
 			});
-			services.AddDefaultIdentity<IdentityUser>()
+			services.AddIdentityCore<ApplicationUser>()
+				.AddSignInManager()
 				.AddEntityFrameworkStores<DataContext>()
 				.AddDefaultTokenProviders();
+
+			//services.AddDefaultIdentity<IdentityUser<ApplicationUser>>()
+			//	.AddEntityFrameworkStores<DataContext>()
+			//	.AddDefaultTokenProviders();
 
 			var appSettingSection = Configuration.GetSection("AppSettings");
 			services.Configure<AppSettings>(appSettingSection);
@@ -59,7 +64,9 @@ namespace Swap.Api
 			{
 				x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
 				x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-			}).AddJwtBearer(x =>
+				x.DefaultSignInScheme = IdentityConstants.ExternalScheme;
+			})
+				.AddJwtBearer(x =>
 		   {
 			   x.RequireHttpsMetadata = true;
 			   x.SaveToken = true;
@@ -73,13 +80,14 @@ namespace Swap.Api
 				   ValidIssuer = appSettings.Issuer
 
 			   };
-		   });
+		   }).AddIdentityCookies();
 			
 		
 
 			services.AddScoped<IUnitOfWork, UnitOfWork>();
 			services.AddScoped<IRepository<Item>, Repository<Item>>();
 			services.AddScoped<IItemService, ItemService>();
+			services.AddScoped<IAuthService, AuthService>();
 
 			services.AddMvc(x => x.EnableEndpointRouting = false).SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddFluentValidation();
 			services.AddTransient<IValidator<RegisterUserVO>, RegisterUserValidation>();

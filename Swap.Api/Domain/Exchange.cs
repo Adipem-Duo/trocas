@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Swap.Api.Models
+﻿namespace Swap.Api.Models
 {
 	public class Exchange
 	{
@@ -13,8 +8,8 @@ namespace Swap.Api.Models
 		public int ItemId { get; set; }
 		public int ItemOfferId { get; set; }
 		public bool IsAccept { get; set; }
-		public User User{ get; set; }
-		public User UserOffer { get; set; }
+		public ApplicationUser User{ get; set; }
+		public ApplicationUser UserOffer { get; set; }
 		public Item Item { get; set; }
 		public Item ItemOffer { get; set; }
 

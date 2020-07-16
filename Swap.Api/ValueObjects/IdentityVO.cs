@@ -10,6 +10,7 @@ namespace Swap.Api.ValueObjects
 	{
 		public string Name { get; set; }
 		public string Email { get; set; }
+		public string MobileNumber { get; set; }
 		public string Password { get; set; }
 		public string ConfirmPassword { get; set; }
 
@@ -24,8 +25,8 @@ namespace Swap.Api.ValueObjects
 			RuleFor(x => x.Password).MinimumLength(6);
 			RuleFor(x => x.Password).MaximumLength(15);
 			RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithMessage("As senhas não conferem");
-
-				
+			RuleFor(x => x.MobileNumber).NotNull().WithMessage("Número de celular obrigatório");
+			RuleFor(x => x.MobileNumber).Matches(@"^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$");
 
 
 		}
